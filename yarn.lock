@@ -1017,13 +1017,14 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@matterlabs/hardhat-zksync-solc@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@matterlabs/hardhat-zksync-solc/-/hardhat-zksync-solc-0.2.3.tgz#4de595e27b6b1ab0e388e998cad2e516616ebde1"
-  integrity sha512-mokE2brOcsl77A19msKtjtUZc+smn1XUTvBVUGe3dLSxZFggoUCDJngnbfmZz8z/j9Mvg70JGJ/jBUVzeRJabw==
+"@matterlabs/hardhat-zksync-solc@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@matterlabs/hardhat-zksync-solc/-/hardhat-zksync-solc-0.3.2.tgz#67cdac01d51b5d137673312376ad5b4a6f794ac4"
+  integrity sha512-PYhIJfsqdsU4Px/XGvvmgKI921VRb4Rjm6rNPsjHYh9bw9TKdUgCYLfx5DF36I7+t2pH4e5KST8GwvDKwqkOTg==
   dependencies:
     "@nomiclabs/hardhat-docker" "^2.0.0"
     dockerode "^3.3.1"
+    semver "^7.3.7"
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
@@ -4229,12 +4230,13 @@ hardhat-deploy-tenderly@^0.1.0:
     chokidar "^3.5.2"
     debug "^4.3.2"
     enquirer "^2.3.6"
+    ethers "^5.5.3"
     form-data "^4.0.0"
     fs-extra "^10.0.0"
     match-all "^1.2.6"
     murmur-128 "^0.2.1"
     qs "^6.9.4"
-    zksync-web3 "^0.3.4"
+    zksync-web3 "^0.4.0"
 
 hardhat-gas-reporter@^1.0.7:
   version "1.0.7"
@@ -6489,6 +6491,13 @@ semver@^7.3.4, semver@^7.3.5:
   dependencies:
     lru-cache "^6.0.0"
 
+semver@^7.3.7:
+  version "7.3.7"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.7.tgz#12c5b649afdbf9049707796e22a4028814ce523f"
+  integrity sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==
+  dependencies:
+    lru-cache "^6.0.0"
+
 send@0.17.1:
   version "0.17.1"
   resolved "https://registry.yarnpkg.com/send/-/send-0.17.1.tgz#c1d8b059f7900f7466dd4938bdc44e11ddb376c8"
@@ -8050,7 +8059,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zksync-web3@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/zksync-web3/-/zksync-web3-0.3.4.tgz#2e136771f7ef6c564a4d311598d84cd42a112396"
-  integrity sha512-3/RrN5KmVIm2t4NlUvIYf10Nm7agBJTdhdWlg5iBAl3HkaBCgvyHTXiftv6GD5qor430Rdj9A0UIs8JWtf4jeQ==
+zksync-web3@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/zksync-web3/-/zksync-web3-0.4.0.tgz#9ab3e8648a6ab11d42b649b3458a0383d6c41bab"
+  integrity sha512-LmrjkQlg2YSR+P0J1NQKtkraCN2ESKfVoMxole3NxesrASQTsk6fR5+ph/8Vucq/Xh8EoAafp07+Q6TavP/TTw==

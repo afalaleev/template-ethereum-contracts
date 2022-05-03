@@ -13,7 +13,7 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: '0.8.11',
+        version: '0.8.12',
         settings: {
           optimizer: {
             enabled: true,
@@ -61,9 +61,7 @@ const config: HardhatUserConfig = {
     },
     zktestnet: {
       accounts: accounts('goerli'),
-      zksync: {
-        // feeToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-      },
+      zksync: true,
       url: 'https://zksync2-testnet.zksync.dev',
     },
   }),
@@ -77,6 +75,7 @@ const config: HardhatUserConfig = {
       experimental: {
         dockerImage: 'matterlabs/zksolc',
       },
+      compilerPath: '.',
     },
   },
   paths: {
