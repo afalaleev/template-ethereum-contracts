@@ -7,6 +7,9 @@ import '@typechain/hardhat';
 import 'solidity-coverage';
 import 'hardhat-deploy-tenderly';
 import {node_url, accounts, addForkConfiguration} from './utils/network';
+import {extendEnvironment} from "hardhat/config";
+import {DeterministicDeploymentInfo} from "hardhat-deploy/dist/types";
+import {neonPrivateKeys} from './neon.private.keys'
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -58,6 +61,16 @@ const config: HardhatUserConfig = {
       url: node_url('goerli'),
       accounts: accounts('goerli'),
     },
+    neonLocal: {
+      url: 'http://127.0.0.1:9090/solana',
+      timeout: 10000000,
+      accounts: neonPrivateKeys,
+    },
+    neonDevnet: {
+      url: 'https://proxy.devnet.neonlabs.org/solana',
+      timeout: 10000000,
+      accounts: neonPrivateKeys,
+    }
   }),
   paths: {
     sources: 'src',
@@ -74,7 +87,7 @@ const config: HardhatUserConfig = {
     target: 'ethers-v5',
   },
   mocha: {
-    timeout: 0,
+    timeout: 1000000000
   },
   external: process.env.HARDHAT_FORK
     ? {
@@ -92,5 +105,39 @@ const config: HardhatUserConfig = {
     username: process.env.TENDERLY_USERNAME as string,
   },
 };
+
+extendEnvironment(async(hre) => {
+  const isNeonNetwork = (): boolean => {
+    return ['neonLocal', 'neonDevnet'].includes(hre.network.name);
+  }
+
+  let snapshot = 0
+  const originalSend = hre.network.provider.send
+  hre.network.provider.send = async (method: string, params: Array<any>): Promise<any> => {
+    if (isNeonNetwork()) {
+      if (method == 'evm_snapshot') {
+        snapshot += 1;
+        return snapshot;
+      } else if (method == 'evm_revert') {
+        return true;
+      }
+    }
+
+    return originalSend.call(this, method, params);
+  }
+
+  hre.config.deterministicDeployment = (): DeterministicDeploymentInfo | undefined => {
+    if (isNeonNetwork()) {
+      return {
+        factory: '',
+        deployer: '',
+        signedTx: '',
+        funding: '10000000000000000' + '000'
+      }
+    }
+
+    return undefined;
+  }
+})
 
 export default config;
